@@ -9,8 +9,8 @@ const  Router = ({isAuth,setIsAuth}) => (
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Login setIsAuth={setIsAuth}/>}/>
-            <Route path="/authors" element={<ProtectedRoute isAuth={isAuth}><AuthorList /></ProtectedRoute>}/>
-            <Route path="/books" element={<ProtectedRoute isAuth={isAuth}><BooksList /></ProtectedRoute>}/>
+            <Route path="/authors" element={<AuthorList />}/>
+            <Route path="/books" element={<BooksList />} />
             <Route path="/*" element={<NotFound />}/>
         </Routes>
     </BrowserRouter>
