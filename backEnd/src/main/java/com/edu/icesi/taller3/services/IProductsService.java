@@ -2,6 +2,10 @@ package com.edu.icesi.taller3.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +40,9 @@ public interface IProductsService {
     @EqualsAndHashCode
     @Table(name = "products", schema = "public")
     public class Product {
-        private int productId;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long productId;
         private String categoryCode;
         private String description;
         private int quantityAvailable;
@@ -50,6 +56,8 @@ public interface IProductsService {
     @EqualsAndHashCode
     @Table(name = "category_products", schema = "public")
     public class Category {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private String code;
         private String description;
     }
