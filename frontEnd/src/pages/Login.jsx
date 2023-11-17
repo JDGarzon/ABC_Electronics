@@ -23,13 +23,13 @@ export default function SignIn({setIsAuth}) {
       userName: data.get('username'),
       password: data.get('password')
     };
-    axios
+  axios
   .post("/login", dataToSend,{withCredentials: true})
   .then((res) => {
     console.log("Login exitoso:", res.headers.authorization);
     localStorage.setItem("token", res.headers.authorization);
     setIsAuth(true);
-    navigate('/books')
+    navigate('/products')
   })
   .catch((err) => {
     console.log("Error al intentar autenticar:", err);

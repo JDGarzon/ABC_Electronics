@@ -2,8 +2,8 @@ package com.edu.icesi.taller3.persistence.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.edu.icesi.taller3.services.IProductsService;
+import com.edu.icesi.taller3.persistence.models.Category;
 
-public interface CategoryRepository extends JpaRepository<IProductsService.Category, Long> {
+public interface CategoryRepository extends JpaRepository<Category, String> {
 
 }

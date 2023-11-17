@@ -22,6 +22,14 @@ public class Taller3Application {
 				System.out.println(beanName);
 			}
 
+			if (beanName.contains("product")) {
+				System.out.println(beanName);
+			}
+
+			if (beanName.contains("order")) {
+				System.out.println(beanName);
+			}
+
 		}
 
 	}

@@ -4,11 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.edu.icesi.taller3.persistence.models.Order;
+import com.edu.icesi.taller3.persistence.models.OrderDetail;
+import com.edu.icesi.taller3.persistence.models.OrderDetailId;
 import com.edu.icesi.taller3.persistence.repositories.OrderDetailRepository;
 import com.edu.icesi.taller3.persistence.repositories.OrderRepository;
 import com.edu.icesi.taller3.services.IOrderService;
 
+@Service
 public class OrdersService implements IOrderService {
     @Autowired
     private OrderRepository orderRepository;

@@ -3,38 +3,48 @@ package com.edu.icesi.taller3.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.edu.icesi.taller3.services.IProductsService.Product;
-import com.edu.icesi.taller3.services.IProductsService.Category;
+import com.edu.icesi.taller3.persistence.models.Category;
+import com.edu.icesi.taller3.persistence.models.Product;
 import com.edu.icesi.taller3.services.impl.ProductServiceImpl;
 
-@Controller("/products")
+@RestController
+@RequestMapping
 public class ProductController {
     @Autowired
     public ProductServiceImpl productService;
 
-    @GetMapping
+    @GetMapping("/products")
     public List<Product> getAllProducts() {
+        System.out.println("_____________________________________");
         return productService.getAll();
     }
 
-    @PostMapping
-    public Product createProduct(Product product) {
+    @GetMapping("/products/{id}")
+    public Product getProduct(@PathVariable Long id) {
+        return productService.getProductById(id).get();
+    }
+
+    @PostMapping("/products")
+    public Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product);
     }
 
-    @PutMapping
-    public Product updateProduct(Long id, Product updatedProduct) {
+    @PutMapping("/products/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
         return productService.updateProduct(id, updatedProduct).get();
     }
 
-    @DeleteMapping
-    public Product deleteProduct(Long id) {
+    @DeleteMapping("/products/{id}")
+    public Product deleteProduct(@PathVariable Long id) {
         return productService.deleteProduct(id);
     }
 
@@ -43,18 +53,23 @@ public class ProductController {
         return productService.getAllcategories();
     }
 
+    @GetMapping("/categories/{id}")
+    public Category getCategory(@PathVariable String id) {
+        return productService.getCategoryById(id).get();
+    }
+
     @PostMapping("/categories")
-    public Category createCategory(Category category) {
+    public Category createCategory(@RequestBody Category category) {
         return productService.createCategory(category);
     }
 
     @PutMapping("/categories")
-    public Category updateCategory(Long id, Category updatedCategory) {
+    public Category updateCategory(@PathVariable String id, @RequestBody Category updatedCategory) {
         return productService.updateCategory(id, updatedCategory).get();
     }
 
-    @DeleteMapping("/categories")
-    public Category deleteCategory(Long id) {
+    @DeleteMapping("/categories/{id}")
+    public Category deleteCategory(@PathVariable String id) {
         return productService.deleteCategory(id);
     }
 

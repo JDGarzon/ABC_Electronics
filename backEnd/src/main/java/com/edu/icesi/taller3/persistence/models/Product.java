@@ -7,18 +7,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@EqualsAndHashCode
+@Table(name = "products", schema = "public")
 @Entity
-@Table(name = "author", schema = "public")
-public class Author {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String nationality;
-
+    private Long productId;
+    private String categoryCode;
+    private String description;
+    private int quantityAvailable;
+    private double cost;
+    private double sellingPrice;
 }

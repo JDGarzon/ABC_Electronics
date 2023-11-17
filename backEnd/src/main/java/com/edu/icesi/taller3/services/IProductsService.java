@@ -3,14 +3,8 @@ package com.edu.icesi.taller3.services;
 import java.util.List;
 import java.util.Optional;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.edu.icesi.taller3.persistence.models.Category;
+import com.edu.icesi.taller3.persistence.models.Product;
 
 public interface IProductsService {
 
@@ -26,39 +20,12 @@ public interface IProductsService {
 
     List<Category> getAllcategories();
 
-    Optional<Category> getCategoryById(Long id);
+    Optional<Category> getCategoryById(String id);
 
     Category createCategory(Category category);
 
-    Optional<Category> updateCategory(Long id, Category updatedCategory);
+    Optional<Category> updateCategory(String id, Category updatedCategory);
 
-    Category deleteCategory(Long id);
+    Category deleteCategory(String id);
 
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @EqualsAndHashCode
-    @Table(name = "products", schema = "public")
-    public class Product {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long productId;
-        private String categoryCode;
-        private String description;
-        private int quantityAvailable;
-        private double cost;
-        private double sellingPrice;
-    }
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @EqualsAndHashCode
-    @Table(name = "category_products", schema = "public")
-    public class Category {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private String code;
-        private String description;
-    }
 }

@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.icesi.taller3.persistence.models.Category;
+import com.edu.icesi.taller3.persistence.models.Product;
 import com.edu.icesi.taller3.persistence.repositories.CategoryRepository;
 import com.edu.icesi.taller3.persistence.repositories.ProductRepository;
 import com.edu.icesi.taller3.services.IProductsService;
@@ -63,7 +65,7 @@ public class ProductServiceImpl implements IProductsService {
     }
 
     @Override
-    public Optional<Category> getCategoryById(Long id) {
+    public Optional<Category> getCategoryById(String id) {
         return categoryRepository.findById(id);
     }
 
@@ -73,7 +75,7 @@ public class ProductServiceImpl implements IProductsService {
     }
 
     @Override
-    public Optional<Category> updateCategory(Long id, Category updatedCategory) {
+    public Optional<Category> updateCategory(String id, Category updatedCategory) {
         Optional<Category> existingCategory = categoryRepository.findById(id);
         if (existingCategory.isPresent()) {
             updatedCategory.setCode(existingCategory.get().getCode());
@@ -83,7 +85,7 @@ public class ProductServiceImpl implements IProductsService {
     }
 
     @Override
-    public Category deleteCategory(Long id) {
+    public Category deleteCategory(String id) {
         Optional<Category> CategoryToDelete = getCategoryById(id);
         if (CategoryToDelete.isPresent()) {
             categoryRepository.deleteById(id);
