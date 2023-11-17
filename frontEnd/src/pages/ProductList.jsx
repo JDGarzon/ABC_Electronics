@@ -79,7 +79,7 @@ function ProductList() {
   return (
     <Context.Provider value={{productEdit, setProductEdit}}>
       <TableCell align="left">
-      <Button variant="contained" color="success" onClick={()=>{navigate("/books")}}>Books</Button>
+      <Button variant="contained" color="success" onClick={()=>{navigate("/orders")}}>Orders</Button>
       </TableCell>
       <ProductForm addProduct={addProduct} ProductEdit={productEdit}/>
       <ProductTable productList={productList} deleteProduct={delProduct} editProduct={setProductEdit}/>
