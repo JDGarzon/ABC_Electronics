@@ -1,19 +1,19 @@
 import {useEffect, useState} from 'react'
 import axios from  '../config/axios'
-import OrderTable from '../components/OrderTable'
-import OrderForm from '../components/OrderForm'
+import OrderTable from '../components/OrderDetailTable'
 import { Context } from '../context/Context'
 import { useNavigate } from 'react-router-dom';
 import {  TableCell, Button} from '@mui/material'
+import OrderDetailForm from '../components/OrderDetailForm';
 
-function OrderList() {
+function OrderDetailsList() {
   const navigate = useNavigate();
   const [orderList, setOrderList] = useState([])
-  const [orderEdit, setOrderEdit] = useState({})
+  const [orderEdit, setOrderEdit] = useState({id:{orderNumber:"",productId:""}, quantity:"", price:""})
 
   const getOrders = async () => {
     try {
-      const res = await axios.get("/orders", {
+      const res = await axios.get("/orderDetails", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -30,13 +30,15 @@ function OrderList() {
   };
 
   useEffect( () => {
+    console.log("useEffect:",orderEdit)
     getOrders()}, [])
 
   const addOrder = async (Order) => {
-    console.log(Order)
+    
     if (Order.OrderId==undefined){
       try{
-        const res = await axios.post("/orders", Order, {
+        console.log(Order)
+        const res = await axios.post("/orderDetails", Order, {
           headers: {
             Authorization:  localStorage.getItem("token"),
           }})
@@ -47,7 +49,7 @@ function OrderList() {
       }
     }else{
       try{
-        const res = await axios.put("/orders/"+Order.OrderId, Order, {
+        const res = await axios.put("/orderDetails/"+Order.id, Order, {
           headers: {
             Authorization:  localStorage.getItem("token"),
           }})
@@ -63,7 +65,7 @@ function OrderList() {
   const delOrder = async (id) => {
     console.log(id)
     try {
-      const res = await axios.delete("/orders/"+id, {
+      const res = await axios.delete("/orderDetails/"+id, {
         headers: {
           Authorization:  localStorage.getItem("token"),
         }})
@@ -72,6 +74,7 @@ function OrderList() {
     }catch (e){
       console.log(e)
     }
+    //<OrderForm addOrder={addOrder} orderEdit={orderEdit} />
   }
 
   return (
@@ -79,11 +82,11 @@ function OrderList() {
       <TableCell align="left">
       <Button variant="contained" color="success" onClick={()=>{navigate("/products")}}>Products</Button>
       </TableCell>
-      <OrderForm addOrder={addOrder} orderEdit={orderEdit}/>
+      <OrderDetailForm addOrder={addOrder} orderDetailEdit={orderEdit} />
       <OrderTable orderList={orderList} deleteOrder={delOrder} editOrder={setOrderEdit}/>
 
     </Context.Provider>
   )
 }
 
-export default OrderList
+export default OrderDetailsList

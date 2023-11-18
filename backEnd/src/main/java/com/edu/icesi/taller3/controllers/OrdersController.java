@@ -61,7 +61,8 @@ public class OrdersController {
     }
 
     @PostMapping("/orderDetails")
-    public Optional<OrderDetail> createOrderDetail(OrderDetail order) {
+    public Optional<OrderDetail> createOrderDetail(@RequestBody OrderDetail order) {
+
         return orderService.createOrderDetail(order);
     }
 
