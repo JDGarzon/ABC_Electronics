@@ -53,17 +53,3 @@ CREATE TABLE ORDER_DETAIL (
     CONSTRAINT fk_order_number FOREIGN KEY (order_number) REFERENCES ORDERS(order_number),
     CONSTRAINT fk_product_id FOREIGN KEY (Product_Id) REFERENCES PRODUCTS(Product_Id)
 );
-
-INSERT INTO CATEGORY_PRODUCTS (Code, Description) VALUES ('TEC', 'Tecnologia');
-
--- Insert 2
-INSERT INTO CATEGORY_PRODUCTS (Code, Description) VALUES ('INM', 'Inmobiliaria');
-
--- Insert 3
-INSERT INTO CATEGORY_PRODUCTS (Code, Description) VALUES ('MED', 'Medicina');
-
--- Insert 4
-INSERT INTO CATEGORY_PRODUCTS (Code, Description) VALUES ('HOGAR', 'Del Hogar');
-
--- Insert 5
-INSERT INTO CATEGORY_PRODUCTS (Code, Description) VALUES ('COCINA', 'Cocina');
