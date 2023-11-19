@@ -13,7 +13,7 @@ function Row({category,deleteCategory,editCategory }) {
   return (
     <TableRow
           key={category.code}
-          sx={{ '&:last-child td, &:last-child th': { bcategory: 0 } }}
+          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
           <TableCell align="right">{category.code}</TableCell>
           <TableCell align="left">{category.description}</TableCell>

@@ -3,7 +3,7 @@ import axios from  '../config/axios'
 import OrderTable from '../components/OrderDetailTable'
 import { Context } from '../context/Context'
 import { useNavigate } from 'react-router-dom';
-import {  TableCell, Button} from '@mui/material'
+import {TableRow,  TableCell, Button} from '@mui/material'
 import OrderDetailForm from '../components/OrderDetailForm';
 
 function OrderDetailsList() {
@@ -79,9 +79,13 @@ function OrderDetailsList() {
 
   return (
     <Context.Provider value={{orderEdit, setOrderEdit}}>
-      <TableCell align="left">
-      <Button variant="contained" color="success" onClick={()=>{navigate("/products")}}>Products</Button>
-      </TableCell>
+      <TableRow>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/orders")}}>Orders</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/products")}}>Products</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/customers")}}>Customers</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/orderDetails")}}>Orders Details</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/categories")}}>Categories</Button></TableCell>
+      </TableRow>
       <OrderDetailForm addOrder={addOrder} orderDetailEdit={orderEdit} />
       <OrderTable orderList={orderList} deleteOrder={delOrder} editOrder={setOrderEdit}/>
 

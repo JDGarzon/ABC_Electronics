@@ -1,60 +1,58 @@
 import {useEffect, useState} from 'react'
-//import tasks from  '../data/todos.json'
 import axios from  '../config/axios'
-import ProductTable from '../components/ProductTable'
-import ProductForm from '../components/ProductForm'
+import CustomerTable from '../components/CustomerTable'
+import CustomerForm from '../components/CustomerForm'
 import { Context } from '../context/Context'
 import { useNavigate } from 'react-router-dom';
-import {TableRow, TableCell, Button} from '@mui/material'
+import {TableRow,  TableCell, Button} from '@mui/material'
 
-function ProductList() {
+function CustomerList() {
   const navigate = useNavigate();
-  const [productList, setProductList] = useState([])
-  const [productEdit, setProductEdit] = useState({})
+  const [customerList, setCustomerList] = useState([])
+  const [CustomerEdit, setCustomerEdit] = useState({})
 
-  const getProducts = async () => {
+  const getCustomers = async () => {
     try {
-      const res = await axios.get("/products", {
+      const res = await axios.get("/customers", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
       });
       console.log(res.data);
-      setProductList(res.data);
-      console.log(productList)
+      setCustomerList(res.data);
+      console.log(customerList)
     } catch (e) {
       console.log(e);
       if (e.response && e.response.status === 401) {
         console.log("No autorizado");
-        navigate('/');
       }
     }
   };
 
   useEffect( () => {
-    getProducts()}, [])
+    getCustomers()}, [])
 
-  const addProduct = async (product) => {
-    console.log(product)
-    if (product.productId==undefined){
+  const addCustomer = async (Customer) => {
+    console.log(Customer)
+    if (Customer.customerId==undefined){
       try{
-        const res = await axios.post("/products", product, {
+        const res = await axios.post("/customers", Customer, {
           headers: {
             Authorization:  localStorage.getItem("token"),
           }})
         if(res.status==200)
-        getProducts()
+        getCustomers()
       }catch (e){
         console.log(e)
       }
     }else{
       try{
-        const res = await axios.put("/products/"+product.productId, product, {
+        const res = await axios.put("/customers/"+Customer.customerId, Customer, {
           headers: {
             Authorization:  localStorage.getItem("token"),
           }})
         if(res.status==200)
-        getProducts()
+        getCustomers()
       }catch (e){
         console.log(e)
       }
@@ -62,22 +60,22 @@ function ProductList() {
     }  
   }
 
-  const delProduct = async (id) => {
+  const delCustomer = async (id) => {
     console.log(id)
     try {
-      const res = await axios.delete("/products/"+id, {
+      const res = await axios.delete("/customers/"+id, {
         headers: {
           Authorization:  localStorage.getItem("token"),
         }})
       if(res.status==200)
-      getProducts()
+      getCustomers()
     }catch (e){
       console.log(e)
     }
   }
 
   return (
-    <Context.Provider value={{productEdit, setProductEdit}}>
+    <Context.Provider value={{CustomerEdit, setCustomerEdit}}>
       <TableRow>
         <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/orders")}}>Orders</Button></TableCell>
         <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/products")}}>Products</Button></TableCell>
@@ -85,11 +83,11 @@ function ProductList() {
         <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/orderDetails")}}>Orders Details</Button></TableCell>
         <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/categories")}}>Categories</Button></TableCell>
       </TableRow>
-      <ProductForm addProduct={addProduct} ProductEdit={productEdit}/>
-      <ProductTable productList={productList} deleteProduct={delProduct} editProduct={setProductEdit}/>
+      <CustomerForm addCustomer={addCustomer} customerEdit={CustomerEdit}/>
+      <CustomerTable customerList={customerList} deleteCustomer={delCustomer} editCustomer={setCustomerEdit}/>
 
     </Context.Provider>
   )
 }
 
-export default ProductList
+export default CustomerList

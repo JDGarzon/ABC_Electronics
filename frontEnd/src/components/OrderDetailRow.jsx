@@ -18,7 +18,6 @@ function Row({order,deleteOrder,editOrder }) {
           <TableCell align="right">{order.id.orderNumber}</TableCell>
           <TableCell align="right">{order.id.productId}</TableCell>
           <TableCell align="right">{order.quantity}</TableCell>
-          <TableCell align="right">{order.quantity}</TableCell>
           <TableCell align="left">{order.price}</TableCell>
           <TableCell align="left">
             <Button variant="contained" color="error" onClick={handleDelete}>Delete</Button>&nbsp;

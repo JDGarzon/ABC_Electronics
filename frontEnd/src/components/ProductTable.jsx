@@ -15,6 +15,7 @@ function  ProductTable ({productList, deleteProduct, editProduct}) {
     <Table sx={{ minWidth: 650 }} aria-label="simple table">
       <TableHead>
         <TableRow>
+        <TableCell align="right">ID</TableCell>
           <TableCell align="right">Descripción</TableCell>
           <TableCell align="left">
               Category

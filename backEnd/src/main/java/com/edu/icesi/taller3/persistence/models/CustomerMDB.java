@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import java.util.Map;
-
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,6 +17,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class CustomerMDB {
     @Id
     private String customerId;
-    private Map<String, Object> data;
+    private List<Map<String, Object>> data;
 
 }

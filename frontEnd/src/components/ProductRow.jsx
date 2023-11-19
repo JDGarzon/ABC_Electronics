@@ -15,6 +15,7 @@ function Row({product,deleteProduct,editProduct }) {
           key={product.productId}
           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
+          <TableCell align="right">{product.productId}</TableCell>
           <TableCell align="right">{product.description}</TableCell>
           <TableCell align="left">{product.categoryCode}</TableCell>
           <TableCell align="left">{product.quantityAvailable}</TableCell>

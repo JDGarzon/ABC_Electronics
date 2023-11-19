@@ -4,7 +4,7 @@ import CategoryTable from '../components/CategoryTable'
 import CategoryForm from '../components/CategoryForm'
 import { Context } from '../context/Context'
 import { useNavigate } from 'react-router-dom';
-import {  TableCell, Button} from '@mui/material'
+import {TableRow,  TableCell, Button} from '@mui/material'
 
 function CategoryList() {
   const navigate = useNavigate();
@@ -79,9 +79,13 @@ function CategoryList() {
 
   return (
     <Context.Provider value={{CategoryEdit, setCategoryEdit}}>
-      <TableCell align="left">
-      <Button variant="contained" color="success" onClick={()=>{navigate("/products")}}>Products</Button>
-      </TableCell>
+      <TableRow>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/orders")}}>Orders</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/products")}}>Products</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/customers")}}>Customers</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/orderDetails")}}>Orders Details</Button></TableCell>
+        <TableCell><Button variant="contained" color="success" onClick={()=>{navigate("/categories")}}>Categories</Button></TableCell>
+      </TableRow>
       <CategoryForm addCategory={addCategory} categoryEdit={CategoryEdit}/>
       <CategoryTable categoryList={categoryList} deleteCategory={delCategory} editCategory={setCategoryEdit}/>
 

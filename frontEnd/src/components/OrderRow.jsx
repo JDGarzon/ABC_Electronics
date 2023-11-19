@@ -15,6 +15,7 @@ function Row({order,deleteOrder,editOrder }) {
           key={order.orderNumber}
           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
         >
+          <TableCell align="right">{order.orderNumber}</TableCell>
           <TableCell align="right">{order.customerId}</TableCell>
           <TableCell align="left">{order.orderDate}</TableCell>
           <TableCell align="left">{order.shippedDate}</TableCell>
